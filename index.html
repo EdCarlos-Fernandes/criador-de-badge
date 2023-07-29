@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Badge</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container" style="margin-bottom: 100px;">
+        <h1 class="my-4">Criador de etiquetas (Badge)</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group d-flex justify-content-around">
+                    <div>
+                        <label for="badgeText" class="text-center" style="width: 100%;">Titulo esquerdo:
+                            <input type="text" class="form-control" id="badgeText" placeholder="Digite o texto do badge"
+                                oninput="generateBadge()">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="badgeText2" class="text-center" style="width: 100%;">Titulo direito:
+                            <input type="text" class="form-control" id="badgeText2"
+                                placeholder="Digite o segundo texto do badge" oninput="generateBadge()">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="badgeStyle">Estilo do Badge:</label>
+                    <select class="form-control" id="badgeStyle" onchange="generateBadge()">
+                        <option value="flat">flat</option>
+                        <option value="flat-square">flat-square</option>
+                        <option value="for-the-badge">for-the-badge</option>
+                        <option value="plastic">plastic</option>
+                        <option value="social">social</option>
+                    </select>
+                </div>
+
+                <div class="form-group d-flex justify-content-around">
+                    <label for="badgeColorTexto">Cor do fundo 1:
+                        <input type="color" class="form-control" id="badgeColor2" onchange="generateBadge()">
+                    </label>
+                    <label for="badgeColor">Cor de fundo 2:
+                        <input type="color" class="form-control" id="badgeColor" onchange="generateBadge()">
+                    </label>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <label for="badgeLink">
+                        Link do seu badge:
+                        <p style="margin: 5px;">Ao ser clicado o badge irá redirecionar para o link de sua escolha, não é obrigatório.</p>
+                        <input type="text" name="badgeLink" id="badgeLink" placeholder="Ex: https://exemplo.com.br" onchange="generateBadge()">
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="addLogoCheckbox"
+                        onchange="toggleLogoSelector()">
+                    <label class="form-check-label" for="addLogoCheckbox">Adicionar logomarca?</label>
+                </div>
+
+                <div class="form-group" id="logoSelector" style="display: none;margin-top: 35px;">
+                    <label for="badgeLogo">Selecione a logo:</label>
+                    <select class="form-control" id="badgeLogo" onchange="generateBadge()">
+                    </select>
+                    <div class="d-flex justify-content-around flex-wrap" style="height: 70px;">
+                        <label class="form-check-label" for="addLogoCheckbox2">
+                            <input type="checkbox" class="form-check-input" id="addLogoCheckbox2" checked
+                                onchange="toggleComNome(); generateBadge();">
+                            Logo e Titulo
+                        </label>
+                        <label class="form-check-label" for="addLogoCheckbox3">
+                            <input type="checkbox" class="form-check-input" id="addLogoCheckbox3"
+                                onchange="toggleSemNome(); generateBadge();">
+                            Logo sem Titulo
+                        </label>
+                        <label for="badgeLogoCor">Cor doa logo:
+                            <input type="color" class="form-control" id="badgeLogoCor" onchange="generateBadge()">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center mt-5" style="position: fixed;top: 0;right: 0; margin: 0 !important;">
+            <div class="col-md-6 text-center" id="badgePreview" style="margin: 0;">
+                <p>Badge criado</p>
+                <div id="badgeCriado"></div>
+                <div class="mt-4">
+                    <button id="downloadPNGButton" class="btn " >Baixar PNG</button>
+                    <button id="downloadSVGButton" class="btn " >Baixar SVG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
